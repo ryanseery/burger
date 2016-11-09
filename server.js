@@ -25,3 +25,15 @@ app.use('/', routes);
 app.listen(PORT, function(){
   console.log('App listening on PORT ' + PORT);
 })
+
+var Sequelize = require('sequelize'),
+  connection;
+if(process.env.JAWSDB_URL) {
+  connection = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  connection = new Sequelize('todo_db', 'root', 'password', {
+    host: 'localhost',
+    dialect: 'mysql',
+    port: '3306'
+  })
+}
